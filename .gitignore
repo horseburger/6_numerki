@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+numerki
+CMake*
+cmake_install*
+.vscode
+tsconfig.json
