@@ -15,8 +15,6 @@ void plot(vector<double> x_axis, vector<double> y_axis);
 
 int main(){
 
-    double h = 0.01;
-    double y1,y2;
     // y1 = x(t), y2 = v(t)
 
    /*  cout << "1. Oscylator prosty (bez tlumienia i wymuszenia\n" << "2. Oscylator slabo tlumiony (bez wymuszenia)\n" 
@@ -67,7 +65,10 @@ int main(){
     }while(a!=9);
  */
 
-    double tmp;
+
+
+    double h = 0.01;
+    double y1,y2;
     y1 = 1;
     y2 = 0;
     w0 = 20*M_PI;
@@ -75,8 +76,8 @@ int main(){
     omega = 1;
     A = 0;
 
-    tmp = rk4(dY2, h, X_POINT, y1, y2);
-    cout << tmp;
+
+
     return 0;
 }
 
@@ -89,8 +90,6 @@ double F(double t){
 double dY2(double x, double y1, double y2){
     double tmp;
     tmp = F(x) - w0*w0*y1 - 2*Beta*y2;
-    cout << tmp;
-    getchar();
     return tmp;
 }
 
@@ -103,19 +102,20 @@ double rk4(double(*f)(double, double, double), double h, double x, double y1, do
     k3 = h*f(x+h/2.0, y1+k2/2.0, y2+k2/2.0);
     k4 = h*f(x+h, y1+k3, y2+k3);
     yi1 = y1 + (k1+2.0*k2+2.0*k3+k4)/6.0;
-    getchar();
     return yi1;
 }
+
 
 void plot(vector<double> x_axis, vector<double> y_axis){
     Gnuplot graph;
     graph.set_grid();
     graph.set_xrange(-10, 10);
-    graph.set_yrange(-5, 5);
+    graph.set_yrange(y_axis[0]-10, y_axis[0]+10);
     graph.set_xlabel("Os x");
     graph.set_ylabel("Os y");
     graph.set_title("Metoda Rungego-Kutty4");
     graph.set_style("lines");
 
     graph.plot_xy(x_axis, y_axis, "Metoda Kungego-Kutty4");
+    getchar();
 }
