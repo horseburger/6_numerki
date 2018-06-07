@@ -21,8 +21,6 @@ int main(){
     double y1,y2;
     double x1 = 0;
     int n = 100;
-    y1 = 1;
-    y2 = 0;
     // y1 = x(t), y2 = v(t)
 
     cout << "1. Oscylator prosty (bez tlumienia i wymuszenia\n" << "2. Oscylator slabo tlumiony (bez wymuszenia)\n" 
@@ -39,6 +37,8 @@ int main(){
             w0 = 20*M_PI;
             Beta = 0;
             A = 0;
+            y1 = 1;
+            y2 = 0;
             break;
         }
         // x(0) = 1, v(0) = 0
@@ -46,6 +46,8 @@ int main(){
             w0 = 20*M_PI;
             Beta = 0.5;
             A = 0;
+            y1 = 1;
+            y2 = 0;
             break;
         }
         // x(0) = 1, v(0) = 0
@@ -53,6 +55,8 @@ int main(){
             w0 = 20*M_PI;
             Beta = 10;
             A = 0;
+            y1 = 1;
+            y2 = 0;
             break;
         }
         // x(0) = 0, v(0) = 0
@@ -62,6 +66,8 @@ int main(){
             A = 50;
             omega = 2*M_PI;
             phi = 0;
+            y1 = 0;
+            y2 = 0;
             break;
         }
         // x(0) = 0, v(0) = 0
@@ -71,6 +77,8 @@ int main(){
             A = 50;
             omega = 20*M_PI;
             phi = 0;
+            y1 = 0;
+            y2 = 0;
             break;
         }
     }
@@ -96,7 +104,7 @@ int main(){
 
     for (int i = 0; i < n; i++)
 	{
-		cout << endl << "Wartosc dla x = " << rk3[i] << endl <<  "Wyniki funkcji pierwszej: "  << rk1[i] << "   "  << "drugiej: " << rk2[i] << endl ;
+		cout << endl << "Wartosc dla x = " << rk3[i] << endl <<  "Wyniki funkcji drugiej: " << rk2[i] << endl ;
 	}
 
     vector<double> x_axis(n);
@@ -118,21 +126,6 @@ int main(){
 double F(double t){
     return A*sin(omega*t + phi);
 }
-
-
-
-/* double rk4(double(*f)(double, double, double), double h, double x, double y1, double y2){
-    double yi1;
-    double k1,k2,k3,k4;
-    k1 = h*f(x, y1, y2);
-    k2 = h*f(x+h/2.0, y1+k1/2.0, y2+k1/2.0);
-    k3 = h*f(x+h/2.0, y1+k2/2.0, y2+k2/2.0);
-    k4 = h*f(x+h, y1+k3, y2+k3);
-    yi1 = y1 + (k1+2.0*k2+2.0*k3+k4)/6.0;
-    return yi1;
-} */
-
-
 
 double pattern1(double x, double y1, double y2)
 {
