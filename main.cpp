@@ -129,7 +129,8 @@ double F(double t){
 
 double pattern1(double x, double y1, double y2)
 {
-	return A*sin(omega*x + phi);
+	// return A*sin(omega*x + phi);
+    return y2;
 }
 
 double pattern2(double x, double y1, double y2)
@@ -182,7 +183,7 @@ void plot(vector<double> x_axis, vector<double> y_axis, double n){
     Gnuplot graph;
     graph.set_grid();
     graph.set_xrange(-10, 10);
-    graph.set_yrange(y_axis[0], y_axis[n-1]);
+    graph.set_yrange(-30, 30);
     graph.set_xlabel("Os x");
     graph.set_ylabel("Os y");
     graph.set_title("Metoda Rungego-Kutty4");
